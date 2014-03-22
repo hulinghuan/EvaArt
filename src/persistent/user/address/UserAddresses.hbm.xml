@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 19, 2014 2:41:16 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+
+    <class name="persistent.user.address.UserBillingAddress" table="USER_BILLING_ADDRESS">
+        <id name="user_billing_address_id" type="int">
+            <column name="USER_BILLING_ADDRESS_ID" />
+            <generator class="native" />
+        </id>
+        <property name="user_billing_address" type="java.lang.String">
+            <column name="USER_BILLING_ADDRESS" />
+        </property>
+    </class>
+    
+      <class name="persistent.user.address.UserShippingAddress" table="USER_SHIPPING_ADDRESSES">
+        <id name="user_shipping_address_id" type="int">
+            <column name="USER_SHIPPING_ADDRESS_ID" />
+            <generator class="native" />
+        </id>
+        <property name="user_shipping_address" type="java.lang.String">
+            <column name="USER_SHIPPING_ADDRESS" />
+        </property>
+    </class>
+    
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 19, 2014 1:15:13 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="persistent.user.profile.UserProfile" table="USER_PROFILE">
+        <id name="profileId" type="int">
+            <column name="USER_PROFILE_ID" />
+            <generator class="native" />
+        </id>
+        <property name="profileLastName" type="java.lang.String">
+            <column name="USER_PROFILE_LASTNAME" />
+        </property>
+        <property name="profileFirstName" type="java.lang.String">
+            <column name="USER_PROFILE_FIRSTNAME" />
+        </property>
+        
+        <set name="userBillingAddresses" cascade="all">
+        	<key>
+        		<column name="user_profile_id" />
+        	</key>
+        	<one-to-many class="persistent.user.address.UserBillingAddress" />
+        </set>
+        <set name="userShippingAddresses" cascade="all">
+        	<key>
+        		<column name="user_profile_id" />
+        	</key>
+        	<one-to-many class="persistent.user.address.UserShippingAddress" />
+        </set>
+    </class>
+</hibernate-mapping>
