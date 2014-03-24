@@ -14,7 +14,7 @@
         <property name="user_password" type="java.lang.String">
             <column name="USER_PASSWORD" />
         </property>
-        <many-to-one name="userProfile" column="user_profile_id" unique="true"
+        <many-to-one name="userProfile" column="USER_PROFILE_ID" unique="true"
         class="persistent.user.profile.UserProfile" not-null="true" />
     </class>
 </hibernate-mapping>

@@ -17,52 +17,19 @@ public class UserLogin {
 	private String user_password;
 	private UserProfile userProfile;
 	
-	public UserLogin(String user_login_email, String user_password) {
+	public UserLogin(){
+		
+	}
+	
+	public UserLogin(int user_id, String user_login_email, String user_password, UserProfile userProfile) {
+		this.user_id = user_id;
 		this.user_login_email = user_login_email;
 		this.user_password = user_password;
+		this.userProfile = userProfile;
 	}
+
 	//main function for testing only
 	public static void main(String[] args) {
-		
-		//the following test code is in order to register the new account in user_billing_address, user_login, user_profile, user_shipping_address
-		Configuration configuration = new Configuration().configure();
-		ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-		SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-		Session session;
-		
-		session = sessionFactory.openSession();
-		session.beginTransaction();
-		
-		//persist the profile into database;
-		UserProfile userProfile = new UserProfile();
-		session.save(userProfile);
-		//session.getTransaction().commit();
-		//session.close();
-		
-		//persist the login into database;
-		
-		//session = sessionFactory.openSession();
-		//session.beginTransaction();
-		
-		UserLogin userLogin = new UserLogin("antoherUser", "xxxxxxxx");
-		userLogin.setUserProfile(userProfile);
-		
-		session.saveOrUpdate(userLogin);
-		//session.getTransaction().commit();
-		//session.close();
-		
-		//session = sessionFactory.openSession();
-		//session.beginTransaction();
-		
-		UserBillingAddress userBillingAddress = new UserBillingAddress();
-		UserShippingAddress userShippingAddress = new UserShippingAddress();
-		userProfile.getUserBillingAddresses().add(userBillingAddress);
-		userProfile.getUserShippingAddresses().add(userShippingAddress);
-		
-		session.saveOrUpdate(userProfile);
-		session.getTransaction().commit();
-		session.close();
-		
 	}
 	public int getUser_id() {
 		return user_id;

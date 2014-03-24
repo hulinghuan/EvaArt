@@ -10,9 +10,9 @@ public class RegisterModule {
 		}
 		
 		public void register(String user_login_email, String user_password) {
-			UserLogin userLogin = new UserLogin(user_login_email, user_password);
+			/*UserLogin userLogin = new UserLogin(user_login_email, user_password);
 			UserLoginDao userLoginDao = new UserLoginDao();
-			userLoginDao.addUserLogin(userLogin);
+			userLoginDao.addUserLogin(userLogin);*/
 		}
 }
 

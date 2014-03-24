@@ -15,17 +15,18 @@
             <column name="USER_PROFILE_FIRSTNAME" />
         </property>
         
-        <set name="userBillingAddresses" cascade="all">
+        <!-- <set name="userBillingAddresses" cascade="all">
         	<key>
         		<column name="user_profile_id" />
         	</key>
         	<one-to-many class="persistent.user.address.UserBillingAddress" />
-        </set>
-        <set name="userShippingAddresses" cascade="all">
+        </set>  -->
+        <!-- <set name="userShippingAddresses" cascade="all">
         	<key>
         		<column name="user_profile_id" />
         	</key>
         	<one-to-many class="persistent.user.address.UserShippingAddress" />
-        </set>
+        </set>  -->
+        
     </class>
 </hibernate-mapping>

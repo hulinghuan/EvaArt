@@ -2,8 +2,10 @@ package dao.user;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 
+import persistent.user.login.UserLogin;
 import persistent.user.profile.UserProfile;
 import dao.HibernateUtility;
 
@@ -23,6 +25,12 @@ public class UserProfileDao extends HibernateUtility{
 	
 	//main function for testing only
 	public static void main(String[] args) {
+		UserProfileDao userProfileDao = new UserProfileDao();
+		//try to delete rows contain the foreign key of user_login table
+		
+		//userProfileDao.deleteUserProfileById(13);
+		userProfileDao.getUserProfileById(13);
+		
 		
 	}
 	
@@ -41,21 +49,54 @@ public class UserProfileDao extends HibernateUtility{
 	 * the specific UserProfile, if is not found, return empty UserProfil Object
 	 *
 	 */
-	public UserProfile getUserProfileById(int id) {
+	public UserProfile getUserProfileById(int UserProfileId) {
 		session = sessionFactory.openSession();
+		try {
 		session.beginTransaction();
-		
 		Query query = session.createQuery("from UserProfile where profileId = "
-				+ id);
-		session.close();
+				+ UserProfileId);
+		
 		List queryResultList = query.list();
 		if(queryResultList.size() == 1) {
 			UserProfile queryResult = (UserProfile) queryResultList.get(0);
+			System.out.println(queryResult.getProfileFirstName());
+            
 			return queryResult;
 		} else {
+			
 			return new UserProfile();
+		} 
+		} catch (HibernateException e) {
+			if(session.getTransaction() != null) {
+				session.getTransaction().rollback();
+				e.printStackTrace();
+			}
+		} finally {
+			session.close();
 		}
+		return null;
+		
 	}
 	
-	
-}
+	public void deleteUserProfileById(int userProfileId) {
+		UserLoginDao userLoginDao = new UserLoginDao();
+		userLoginDao.deleteUserLoginByUserProfileId(userProfileId);
+		
+		session = sessionFactory.openSession();
+		try {
+			
+			session.beginTransaction();
+			UserProfile userProfile = (UserProfile) session.get(UserProfile.class, userProfileId);
+			session.delete(userProfile);
+			session.getTransaction().commit();
+		} catch (HibernateException e) {
+			if (session.getTransaction() != null) {
+				session.getTransaction().rollback();
+				e.printStackTrace();
+			} 
+		} finally {
+			session.close();
+		}
+		
+	}
+} 

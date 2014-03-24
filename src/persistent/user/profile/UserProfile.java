@@ -19,8 +19,8 @@ public class UserProfile {
 	private String profileLastName;
 	private String profileFirstName;
 
-	private Set<UserBillingAddress> userBillingAddresses = new HashSet<UserBillingAddress>();
-	private Set<UserShippingAddress> userShippingAddresses = new HashSet<UserShippingAddress>();
+	//private Set<UserBillingAddress> userBillingAddresses = new HashSet<UserBillingAddress>();
+	//private Set<UserShippingAddress> userShippingAddresses = new HashSet<UserShippingAddress>();
 	
 	
 	//main function for test only
@@ -102,7 +102,7 @@ public class UserProfile {
 
 
 	
-	public Set<UserBillingAddress> getUserBillingAddresses() {
+	/*public Set<UserBillingAddress> getUserBillingAddresses() {
 		return userBillingAddresses;
 	}
 
@@ -123,7 +123,7 @@ public class UserProfile {
 	public void setUserShippingAddresses(
 			Set<UserShippingAddress> userShippingAddresses) {
 		this.userShippingAddresses = userShippingAddresses;
-	}
+	}*/
 
 
 
