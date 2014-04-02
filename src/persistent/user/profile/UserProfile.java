@@ -19,8 +19,8 @@ public class UserProfile {
 	private String profileLastName;
 	private String profileFirstName;
 
-	//private Set<UserBillingAddress> userBillingAddresses = new HashSet<UserBillingAddress>();
-	//private Set<UserShippingAddress> userShippingAddresses = new HashSet<UserShippingAddress>();
+	private Set<UserBillingAddress> userBillingAddresses = new HashSet<UserBillingAddress>();
+	private Set<UserShippingAddress> userShippingAddresses = new HashSet<UserShippingAddress>();
 	
 	
 	//main function for test only
@@ -32,29 +32,6 @@ public class UserProfile {
 		
 		session = sessionFactory.openSession();
 		session.beginTransaction();
-		
-		/*UserProfile userProfile = new UserProfile();
-		userProfile.setProfileFirstName("Linghuan");
-		userProfile.setProfileLastName("Hu");
-		//billing address and shipping address should be the individual and independent table
-		UserAddress userAddress1 = new UserAddress();
-		userAddress1.setBillingAddress("3600 Alma Rd");
-		userAddress1.setShippingAddress("APT 2523");
-		Set<UserAddress> addressSet = new HashSet<UserAddress>();
-		addressSet.add(userAddress1);
-		
-		userProfile.setUserProfileAddress(addressSet);*/
-		/*UserProfile userProfile;
-		Query query = session.createQuery("from UserProfile where user_profile_id = 1");
-		List userProfiles = query.list();
-		userProfile = (UserProfile) userProfiles.get(0);
-		UserAddress userAddress = new UserAddress();
-		userAddress.setBillingAddress("gaoxingqu");
-		userAddress.setShippingAddress("jiujian");
-		userProfile.getUserProfileAddress().add(userAddress);
-		session.saveOrUpdate(userProfile);
-		session.getTransaction().commit();
-		session.close();*/
 		
 		UserProfile userProfile;
 		Query query = session.createQuery("from UserProfile where profileId = 1");
@@ -100,9 +77,19 @@ public class UserProfile {
 		this.profileFirstName = profileFirstName;
 	}
 
+	public int getProfileId() {
+		return profileId;
+	}
 
-	
-	/*public Set<UserBillingAddress> getUserBillingAddresses() {
+
+
+	public void setProfileId(int profileId) {
+		this.profileId = profileId;
+	}
+
+
+
+	public Set<UserBillingAddress> getUserBillingAddresses() {
 		return userBillingAddresses;
 	}
 
@@ -123,17 +110,5 @@ public class UserProfile {
 	public void setUserShippingAddresses(
 			Set<UserShippingAddress> userShippingAddresses) {
 		this.userShippingAddresses = userShippingAddresses;
-	}*/
-
-
-
-	public int getProfileId() {
-		return profileId;
-	}
-
-
-
-	public void setProfileId(int profileId) {
-		this.profileId = profileId;
 	}
 }

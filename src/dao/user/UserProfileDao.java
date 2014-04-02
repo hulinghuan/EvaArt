@@ -75,7 +75,25 @@ public class UserProfileDao extends HibernateUtility{
 			session.close();
 		}
 		return null;
-		
+	}
+	
+	public UserProfile getUserProfileByUserId(String userId) {
+		int userIdInt = Integer.valueOf(userId).intValue();
+		UserProfile queryResult = new UserProfile();
+		try {
+			session = sessionFactory.openSession();
+			session.beginTransaction();
+			queryResult = (UserProfile) session.get(UserProfile.class, userIdInt);
+			return queryResult;
+		} catch(HibernateException e) {
+			if(session.getTransaction() != null) {
+				session.getTransaction().rollback();
+				e.printStackTrace();
+			}
+			return queryResult;
+		} finally {
+			session.close();
+		}
 	}
 	
 	public void deleteUserProfileById(int userProfileId) {

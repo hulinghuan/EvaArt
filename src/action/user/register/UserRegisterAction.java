@@ -10,9 +10,13 @@ public class UserRegisterAction extends ActionSupport{
 	private String password;
 	
 	public String execute() throws Exception {
-		new RegisterModule().register(loginEmail, password);
+		if (new RegisterModule().register(loginEmail, password) == true) {
+			return SUCCESS;
+		} else {
+			return ERROR;
+		}
 		//need add register fail or success if statement in future.
-		return SUCCESS;
+		
 	}
 
 	public String getLoginEmail() {
@@ -30,8 +34,4 @@ public class UserRegisterAction extends ActionSupport{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	
-	
-
 }

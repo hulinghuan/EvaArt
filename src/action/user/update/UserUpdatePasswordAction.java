@@ -13,7 +13,7 @@ public class UserUpdatePasswordAction extends ActionSupport{
 		String userId;
 		userId = (String) actionContext.getSession().get("userId");
 		if( userId != null) {
-			if(new PasswordModule().updatePassword(userId, this.newPassword) == "success") {
+			if(new PasswordModule().updatePassword(userId, this.newPassword) == true) {
 				return SUCCESS;
 			}
 		} else {

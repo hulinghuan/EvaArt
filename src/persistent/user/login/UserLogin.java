@@ -21,8 +21,13 @@ public class UserLogin {
 		
 	}
 	
-	public UserLogin(int user_id, String user_login_email, String user_password, UserProfile userProfile) {
-		this.user_id = user_id;
+	/**
+	 * initial a new UserLogin persistent instance with following initial value
+	 * @param user_login_email
+	 * @param user_password
+	 * @param userProfile
+	 */
+	public UserLogin(String user_login_email, String user_password) {
 		this.user_login_email = user_login_email;
 		this.user_password = user_password;
 		this.userProfile = userProfile;
